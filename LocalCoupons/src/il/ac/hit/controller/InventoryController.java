@@ -97,18 +97,22 @@ public class InventoryController extends HttpServlet
 			
 			Coupon myCoupon = new Coupon(id, business, image, details, category, date, latitude, longitude);
 			
+			RequestDispatcher dispatcher = null;
+			
 			if(CouponTable.getInstance().addCoupon(myCoupon))
 			{
 				log.info("InventoryController | addCoupon | fileUploadedSuccessfuly");
-				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/success.jsp");
+				dispatcher = getServletContext().getRequestDispatcher("/success.jsp");
 				request.setAttribute("successmsg", "Coupon added successfuly!");
-				dispatcher.forward(request, response);
 			}
 			else
 			{
 				log.info("InventoryController | Coupon already exist");
-				out.println("<h1 style=\"color:red;\">Coupon id already exists!</h1>");
+				dispatcher = getServletContext().getRequestDispatcher("/error.jsp");
+				request.setAttribute("errmsg", "Coupon id already exists!");
 			}
+			
+			dispatcher.forward(request, response);
 		}
 		else if (path.endsWith("removeCoupon.html"))
 		{

@@ -6,6 +6,7 @@
 <head lang="en">
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1255">
 <title>Error!</title>
+<%@ taglib uri="/WEB-INF/tld/agcouponstags.tld" prefix="errorMessage" %>
 <link href="css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
@@ -43,7 +44,15 @@ input{
 <body>
 <center>
 <img src="http://mahshev.herobo.com/img/er1.jpg" border="0"></img>
-<h4><%=exception.getMessage()%></h4>
+
+<%
+	String exceptionMsg = "\"" + exception.getMessage() + "\"";
+	String errorMsg = "\"" + request.getAttribute("errmsg") + "\"";
+%>
+
+<errorMessage:error msg="Hello"></errorMessage:error>
+<errorMessage:error msg="Hello"></errorMessage:error>
+
 <a href="index.html"><img src="http://mahshev.herobo.com/img/er2.jpg" border="0"></img></a>
 </center>
 

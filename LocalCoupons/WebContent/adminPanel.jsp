@@ -94,7 +94,7 @@ p
 
 
 
-<%User user = (User)session.getAttribute("user");
+<%  User user = (User)session.getAttribute("user");
 
   if (user == null)
   {
@@ -131,11 +131,11 @@ p
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">MVC Chooser <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
              
-            <li><a href="#"><i class="fa fa-circle"></i>&nbsp Admin side</a></li>
+            <li><a href="#"><i class="fa fa-circle"></i>&nbsp; Admin side</a></li>
            
             
             <li class="divider"></li>
-             <li><a href="#"><i class="fa fa-circle-o"></i>&nbsp Client side</a></li>
+             <li><a href="#"><i class="fa fa-circle-o"></i>&nbsp; Client side</a></li>
            
           </ul>
            <li><a data-toggle="modal"href="http://mahshev.herobo.com/#myModal" border="0">Contact</a></li>
