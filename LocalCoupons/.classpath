@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="lib" path="C:/Users/גיא גבאי/Desktop/JAVA EE/libraries/libraries/antlr-2.7.6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/גיא גבאי/Desktop/JAVA EE/libraries/libraries/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/גיא גבאי/Desktop/JAVA EE/libraries/libraries/hibernate3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/גיא גבאי/Desktop/JAVA EE/libraries/libraries/hibernate-jpa-2.0-api-1.0.0.Final.jar"/>
+	<classpathentry kind="lib" path="C:/Users/גיא גבאי/Desktop/JAVA EE/libraries/libraries/javassist-3.9.0.GA.jar"/>
+	<classpathentry kind="lib" path="C:/Users/גיא גבאי/Desktop/JAVA EE/libraries/libraries/jta-1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/גיא גבאי/Desktop/JAVA EE/libraries/libraries/log4j-1.2.16.jar"/>
+	<classpathentry kind="lib" path="C:/Users/גיא גבאי/Desktop/JAVA EE/libraries/libraries/mysql-connector-java-5.1.13-bin.jar"/>
+	<classpathentry kind="lib" path="C:/Users/גיא גבאי/Desktop/JAVA EE/libraries/libraries/slf4j-api-1.5.8.jar"/>
+	<classpathentry kind="lib" path="C:/Users/גיא גבאי/Desktop/JAVA EE/libraries/libraries/slf4j-log4j12-1.5.6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/גיא גבאי/Desktop/mongo-2.10.1.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v8.0 (3)">
+		<attributes>
+			<attribute name="owner.project.facets" value="jst.web"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.8.0_11">
+		<attributes>
+			<attribute name="owner.project.facets" value="java"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/גיא גבאי/Desktop/JAVA EE/libraries/libraries/commons-collections-3.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/גיא גבאי/Desktop/commons-net-3.3-bin/commons-net-3.3/commons-net-3.3.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="output" path="build/classes"/>
+</classpath>

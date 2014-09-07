@@ -1,0 +1,31 @@
+<html>
+ <head>
+<title>Just Simple Title</title>
+<script language="javascript">
+var lat, lon;
+
+function myfunc(ob)
+{
+  lat = ob.coords.latitude;
+  lon = ob.coords.longitude;
+}
+function errfunc(ob)
+{
+ alert(ob.message);
+}
+if(window.navigator.geolocation)
+{
+ window.navigator.geolocation.getCurrentPosition(myfunc,errfunc);
+}
+else
+{
+ alert("geolocation is not supported");
+}
+</script>
+</head>
+<body>
+<a href="#"
+     onclick="window.location.href='index2.jsp?latitude='+lat+'&longitude='+lon">Click here</a>
+</form>
+</body>
+</html>
