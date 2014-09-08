@@ -74,7 +74,7 @@ input{
 
 
 <div class="container">
-<h1><i class="fa fa-trash-o fa-lg"></i>&nbsp;--Remove User--</h1>
+<h1><i class="fa fa-trash-o fa-lg"></i>&nbsp;Remove User</h1>
 
 <div class="row"><div class="col-md-7">
 

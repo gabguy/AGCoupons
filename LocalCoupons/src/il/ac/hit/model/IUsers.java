@@ -16,7 +16,7 @@ public interface IUsers {
 	 * @param username
 	 * @return
 	 */
-	public User getUser(String username);
+	public User getUser(String username) throws CouponException;
 	
 	/**
 	 * 

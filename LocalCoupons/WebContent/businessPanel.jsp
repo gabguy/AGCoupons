@@ -320,7 +320,7 @@ Function disableclick(event)
             <div class="text">
               <h4>Logout</h4>
             
-              <p>Close the admin's session.</p>
+              <p>Close the user's session.</p>
 
             </div>
 

@@ -92,27 +92,38 @@ public class UserController extends HttpServlet {
 		{
 			String username = request.getParameter("username");
 			
-			User myUser = UserTable.getInstance().getUser(username);
-			   
-			if(myUser != null)
-			{
-			    RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/getUser.jsp");
+			User myUser = null;
+			
+			try {
 				
-				request.setAttribute("user", myUser);
-				
-				dispatcher.forward(request, response);
-			}
-			else
-			{
+				myUser = UserTable.getInstance().getUser(username);
+			
+				if(myUser != null)
+				{
+				    RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/getUser.jsp");
+					
+					request.setAttribute("user", myUser);
+					
+					dispatcher.forward(request, response);
+				}
+				else
+				{
+					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/error.jsp");
+					
+					request.setAttribute("errmsg", "No such user!");
+					
+					log.info("UserController | No such user!");
+					
+					dispatcher.forward(request, response);
+					
+					
+				}
+			} catch (CouponException e) {
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/error.jsp");
 				
-				request.setAttribute("errmsg", "No such user!");
-				
-				log.info("UserController | No such user!");
+				request.setAttribute("errmsg", e.getMessage());
 				
 				dispatcher.forward(request, response);
-				
-				
 			}
 			
 		}
@@ -134,31 +145,42 @@ public class UserController extends HttpServlet {
 			{
 				String username = request.getParameter("username");
 				
-				User myUser = UserTable.getInstance().getUser(username);
+				User myUser = null;
 				
-				if (myUser != null)
-				{
-				    RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/updateUserInterface.jsp");
+				try {
 					
-					request.setAttribute("user", myUser);
-					
-					log.info("UserController | User's fields updated successfully!");
-
-					dispatcher.forward(request, response);
-				}
-				else
-				{
+					myUser = UserTable.getInstance().getUser(username);
+				
+					if (myUser != null)
+					{
+					    RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/updateUserInterface.jsp");
+						
+						request.setAttribute("user", myUser);
+						
+						log.info("UserController | User's fields updated successfully!");
+	
+						dispatcher.forward(request, response);
+					}
+					else
+					{
+						RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/error.jsp");
+						
+						request.setAttribute("errmsg", "No such user!");
+						
+						log.info("UserController | User not exists!");
+						
+						dispatcher.forward(request, response);
+						
+					}
+				} catch (CouponException e) {
 					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/error.jsp");
 					
-					request.setAttribute("errmsg", "No such user!");
-					
-					log.info("UserController | User not exists!");
+					request.setAttribute("errmsg", e.getMessage());
 					
 					dispatcher.forward(request, response);
-					
 				}
+				
 			}
-		
 			else if (path.endsWith("UserController")) //OK
 			{
 				if (request.getParameter("username") != null)
@@ -186,52 +208,59 @@ public class UserController extends HttpServlet {
 				String username = request.getParameter("username");
 				String password = request.getParameter("password");
 				
-				User user = UserTable.getInstance().getUser(username);
+				User user = null;
 				
-				String savedPassword = user.getPassword();
-				
-				String passwordMD5 = null;
-			
 				try {
+					
+					user = UserTable.getInstance().getUser(username);
+				
+					String savedPassword = user.getPassword();
+					
+					String passwordMD5 = null;
+			
 					log.info("UserController | password ecryption started");
 					
 					passwordMD5 = UserTable.parseMD5(password);
 					
-				} catch (NoSuchAlgorithmException e) {
-					e.printStackTrace();
-				}
-	
-				if (passwordMD5.equals(savedPassword))
-				{
-					log.info("UserController | password matched!");
-					RequestDispatcher dispatcher = null;
-					
-					if(user.isAdmin())//Business or Admin
+					if (passwordMD5.equals(savedPassword))
 					{
-						log.info("UserController | user is Admin.");
-						dispatcher = getServletContext().getRequestDispatcher("/adminPanel.jsp");	
+						log.info("UserController | password matched!");
+						RequestDispatcher dispatcher = null;
+						
+						if(user.isAdmin())//Business or Admin
+						{
+							log.info("UserController | user is Admin.");
+							dispatcher = getServletContext().getRequestDispatcher("/adminPanel.jsp");	
+						}
+						else
+						{
+							log.info("UserController | user is Business.");
+							//Forward to business management panel
+							dispatcher = getServletContext().getRequestDispatcher("/businessPanel.jsp");
+						}
+						
+						request.getSession().setAttribute("user", user);
+						
+						dispatcher.forward(request, response);
 					}
 					else
 					{
-						log.info("UserController | user is Business.");
-						//Forward to business management panel
-						dispatcher = getServletContext().getRequestDispatcher("/businessPanel.jsp");
+						log.info("UserController | Access Denied!");
+						RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/error.jsp");
+						
+						request.setAttribute("errmsg", "Access Denied!<br><br><br>The username or password is incorrect!");
+						
+						dispatcher.forward(request, response);
 					}
-					
-					request.getSession().setAttribute("user", user);
-					
-					dispatcher.forward(request, response);
-				}
-				else
-				{
-					log.info("UserController | Access Denied!");
-					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/accessDeniedLogin.html");
-					
-					dispatcher.forward(request, response);
-				}
-					
-			}
 				
-		}
-		
+				} catch (NoSuchAlgorithmException | CouponException e) {
+					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/error.jsp");
+					
+					request.setAttribute("errmsg", e.getMessage());
+					
+					dispatcher.forward(request, response);
+				}
+				
+			}
+	}
 }

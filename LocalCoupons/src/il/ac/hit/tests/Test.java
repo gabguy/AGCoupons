@@ -28,7 +28,16 @@ public class Test {
 		log.info("TEST1 | Testing User creation");
 		UserTable userTable = UserTable.getInstance();
 		userTable.addUser("Test", "test", "Test");
-		User user = userTable.getUser("Test");
+		
+		User user = null;
+		
+		try {
+			
+			user = userTable.getUser("Test");
+		} catch (CouponException e) {
+			e.printStackTrace();
+		}
+		
 		assertNotNull("A test user was created", user);
 	}
 }

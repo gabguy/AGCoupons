@@ -99,7 +99,7 @@ public class UserTable implements IUsers{
 	}
 	
 	@Override
-	public User getUser(String username)
+	public User getUser(String username) throws CouponException
 	{
 		BasicDBObject query = new BasicDBObject("username", username);
 		
@@ -132,6 +132,10 @@ public class UserTable implements IUsers{
 				   
 					cursor.close();
 				}
+		}
+		else
+		{
+			throw new CouponException("User does not exist!");
 		}
 		
 		return null;
