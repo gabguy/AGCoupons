@@ -13,6 +13,7 @@ Library 1.2//EN"
  <attribute>
 	<name>msg</name>
 	<required>true</required>
+	<rtexprvalue>true</rtexprvalue>
  </attribute>
 </tag>
 </taglib> 

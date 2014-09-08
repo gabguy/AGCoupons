@@ -143,7 +143,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
 <td><h5>Location Data</h5>
 </tr>
 <tr>
-<td><div id="googleMap" style="width:600px;height:480px;"></div></td>
+<td><div id="googleMap" style="width:550px;height:430px;"></div></td>
 </tr>
 
 <input type="hidden" value="OUTPUT" id="latitude" name="latitude">

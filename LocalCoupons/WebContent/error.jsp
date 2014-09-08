@@ -46,12 +46,20 @@ input{
 <img src="http://mahshev.herobo.com/img/er1.jpg" border="0"></img>
 
 <%
-	String exceptionMsg = "\"" + exception.getMessage() + "\"";
-	String errorMsg = "\"" + request.getAttribute("errmsg") + "\"";
+	String exceptionMsg = "", errorMsg = "";
+
+	if (exception != null)
+	{
+		exceptionMsg = exception.getMessage();
+	}
+	else if (request.getAttribute("errmsg") != null)
+	{
+		errorMsg = (String)request.getAttribute("errmsg");
+	}
 %>
 
-<errorMessage:error msg="Hello"></errorMessage:error>
-<errorMessage:error msg="Hello"></errorMessage:error>
+<errorMessage:error msg="<%= exceptionMsg %>"></errorMessage:error>
+<errorMessage:error msg="<%= errorMsg %>"></errorMessage:error>
 
 <a href="index.html"><img src="http://mahshev.herobo.com/img/er2.jpg" border="0"></img></a>
 </center>
